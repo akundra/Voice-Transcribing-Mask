@@ -12,13 +12,14 @@ def main():
     #Sample code below edit to customize
     r = sr.Recognizer()
 
-    with sr.Microphone() as source:
+    with sr.Microphone(sample_rate=44100, device_index=2) as source:
+        r.adjust_for_ambient_noise(source, duration=1)
         print("start")
         r.adjust_for_ambient_noise(source, duration=0.5)
         audio = r.listen(source)
 
         try:
-            data = r.recognize_google(audio)
+            data = r.recognize_sphinx0(audio)
             print(data)
         except:
             print("Please try again")
