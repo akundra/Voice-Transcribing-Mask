@@ -1,7 +1,6 @@
 # This is a sample Python script.
 import speech_recognition as sr
-import pocketsphinx as ps
-import pyaudio as pa
+
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -13,16 +12,18 @@ def main():
     r = sr.Recognizer()
 
     with sr.Microphone(sample_rate=44100, device_index=2) as source:
-        r.adjust_for_ambient_noise(source, duration=1)
+        #r.adjust_for_ambient_noise(source, duration=1)
         print("start")
         r.adjust_for_ambient_noise(source, duration=0.5)
         audio = r.listen(source)
 
         try:
-            data = r.recognize_sphinx0(audio)
+            data = r.recognize_sphinx(audio)
             print(data)
-        except:
-            print("Please try again")
+        except sr.UnknownValueError:
+            print("Sphinx could not understand")
+        except sr.RequestError as e:
+            print("Sphinx error; {0}".format(e))
     #Code above here is sample
     #Test ssh key
 
