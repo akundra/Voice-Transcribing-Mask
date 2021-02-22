@@ -1,58 +1,26 @@
-# This is a sample Python script.
-import speech_recognition as sr
-import pyaudio
-from ctypes import *
-from contextlib3 import contextmanager
-
-"""
-#Begin error handling for pyaudio
-
-ERROR_HANDLER_FUNC = CFUNCTYPE(None, c_char_p, c_int, c_char_p, c_int, c_char_p)
-
-def py_error_handler(filename, line, function, err, fmt):
-    pass
-
-c_error_handler = ERROR_HANDLER_FUNC(py_error_handler)
-
-@contextmanager
-def noalsaerr():
-    asound = cdll.LoadLibrary('libasound.so')
-    asound.sn_lib_error_set_handler(c_error_handler)
-    yield
-    asound.snd_lib_error_set_handler(None)
-
-#End Error Handling for pyaudio
-"""
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+#Update python environment to 3.9.2
+apt install libffi-dev libbz2-dev liblzma-dev libsqlite3-dev libncurses5-dev libgdbm-dev zlib1g-dev libreadline-dev libssl-dev tk-dev build-essential libncursesw5-dev libc6-dev openssl git
+wget https://www.python.org/ftp/python/3.9.2/Python-3.9.2.tar.xz
+tar xf Python-3.9.2.tar.xz
+cd Python-3.9.2
+./configure --enable-optimizations
+make -j -l 4
+sudo make altinstall
+#sudo nano ~/.bashrc
+#Add command: alias python='python3.9'
+#Add command: alias python3='python3.9'
+#Save changes and exit
+. ~/.bashrc
 
 
-
-def main():
-    # Use a breakpoint in the code line below to debug your script.
-
-    r = sr.Recognizer()
-
-
-#    with noalsaerr(), \
-    with sr.Microphone(sample_rate=44100, device_index=2) as source:
-    # r.adjust_for_ambient_noise(source, duration=1)
-        print("start")
-        r.adjust_for_ambient_noise(source, duration=0.5)
-        audio = r.listen(source)
-
-        try:
-            data = r.recognize_sphinx(audio)
-            print(data)
-        except sr.UnknownValueError:
-            print("Sphinx could not understand")
-        except sr.RequestError as e:
-            print("Sphinx error; {0}".format(e))
-
-
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    main()
-
+#Install packages needed for deepspeech
+sudo apt install git python3-pip python3-scipy python3-numpy python3-pyaudio libatlas3-base
+pip3 install deepspeech --upgrade
+mkdir ~/dspeech
+cd ~/dspeech
+#Download scorer and tensorflow model for deepspeech
+curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspeech-0.9.3-models.tflite
+curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspeech-0.9.3-models.scorer
+curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/audio-0.9.3.tar.gz
+tar xvf audio-0.9.3.tar.gz
+source ~/.profile
