@@ -91,16 +91,6 @@ def getString(i, buffer, chunklen):
     
     return string
 
-def checkFileActive(file):
-    
-    # try to read file, it's active, raise flag. If not, false, rasie flag
-    try:
-        file.read(1)
-    except:
-        return False
-    
-    return True
-
 # textScroll()
 # 
 # description: This function is called once in main() to scroll the text. It is
