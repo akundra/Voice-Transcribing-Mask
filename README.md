@@ -13,8 +13,8 @@ PyAudio - Provides Python bindings to record audio used for transcription
 Pip - Package installer for Python
 
 
-pocketsphinx - Part of CMU Sphinx Open Source Toolkit used for Speech Recogntion.
-				This acts as a python interface to CMU Sphinxbase
+~~pocketsphinx - Part of CMU Sphinx Open Source Toolkit used for Speech Recogntion.
+				This acts as a python interface to CMU Sphinxbase~~
 				
 				
 SpeechRecognition - Used for speech recognition. Talks to an API of user choice to
