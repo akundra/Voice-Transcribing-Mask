@@ -24,3 +24,4 @@ curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/deepspee
 curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.9.3/audio-0.9.3.tar.gz
 tar xvf audio-0.9.3.tar.gz
 source ~/.profile
+ 
