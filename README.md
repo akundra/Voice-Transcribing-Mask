@@ -19,3 +19,9 @@ Pip - Package installer for Python
 				
 SpeechRecognition - Used for speech recognition. Talks to an API of user choice to
 		    handle recognition
+
+
+##For startup/shutdown boot sequence
+#Go to boot/config.txt and add:
+dtoverlay=gpio-shutdown,gpio_pin=3
+#Connect the double throw push button to Pin 5 (GPIO 3)
